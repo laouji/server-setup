@@ -1,0 +1,6 @@
+{
+    "name": "basic web server",
+    "run_list": [
+        "role[basic-www]"
+    ]
+}

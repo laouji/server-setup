@@ -1,0 +1,11 @@
+{
+    "name": "basic-www",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "description": "basic web server",
+    "run_list": [
+        "yum-epel",
+        "recipe[base_packages]",
+        "recipe[nginx]"
+    ]
+}

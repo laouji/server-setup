@@ -7,6 +7,7 @@
         "yum-epel",
         "recipe[profile]",
         "recipe[base_packages]",
+        "recipe[supervisor]",
         "recipe[vim]",
         "recipe[nginx]"
     ]

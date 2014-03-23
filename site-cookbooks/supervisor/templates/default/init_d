@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+#supervisord - this script starts and stops the supervisord daemon
+#
+# chkconfig:   - 90 10
+# description:  Supervisor is a client/server system that allows \
+#               its users to monitor and control a number of \
+#               processes on UNIX-like operating systems.
+# processname:  supervisord
+# config:       /etc/supervisord.conf
+# pidfile:      /tmp/supervisord.pid
+
+# Source function library.
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+RETVAL=0
+supervisord="/usr/bin/supervisord"
+prog=$(basename $supervisord)
+pidfile=/tmp/supervisord.pid
+lockfile=/var/lock/subsys/supervisord
+
+start () {
+    echo -n $"Starting $prog: "
+    daemon $supervisord -c /etc/supervisord.conf --pidfile $pidfile
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+stop () {
+    echo -n $"Stopping $prog: "
+    killproc -p $pidfile $supervisord -QUIT
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+restart () {
+    stop
+    sleep 1
+    start
+}
+reload () {
+    echo -n $"Reloading $prog: "
+    killproc -p $pidfile $supervisord -HUP
+    RETVAL=$?
+    echo
+}
+
+case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    stop
+    ;;
+    reload)
+    reload
+    ;;
+    restart)
+    restart
+    ;;    
+    status)
+    status -p ${pidfile} supervisord
+    RETVAL=$?
+    ;;
+    *)
+    echo $"Usage: $0 {start|stop|status|restart|reload}"
+        RETVAL=2
+    ;;
+esac
+
+exit $RETVAL

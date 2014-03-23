@@ -1,0 +1,6 @@
+{
+    "name": "plenv",
+    "run_list": [
+        "recipe[plenv]"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "name": "pyenv",
+    "run_list": [
+        "recipe[pyenv]"
+    ]
+}

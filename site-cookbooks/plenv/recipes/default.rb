@@ -16,7 +16,7 @@ bash "install plenv" do
         echo 'eval "$(plenv init -)"' >> #{extract_path}/.bash_profile
         source #{extract_path}/.bash_profile
         git clone git://github.com/tokuhirom/Perl-Build.git #{extract_path}/.plenv/plugins/perl-build/
-        plenv install 5.18.0
+        plenv install #{node[:plenv][:perl_ver]}
         plenv rehash
     EOH
 end

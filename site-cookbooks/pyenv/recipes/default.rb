@@ -16,7 +16,7 @@ bash "install pyenv" do
         echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> #{extract_path}/.bash_profile
         echo 'eval "$(pyenv init -)"' >> #{extract_path}/.bash_profile
         source #{extract_path}/.bash_profile
-        pyenv install 3.3.3
+        pyenv install #{node[:plenv][:perl_ver]}
         pyenv rehash
     EOH
 end

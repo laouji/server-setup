@@ -1,5 +1,3 @@
-include_recipe "nginx"
-
 package "nginx" do
     action :install
     options("--enablerepo=epel")

@@ -1,5 +1,3 @@
-include_recipe "profile"
-
 template "/etc/profile.d/custom.sh" do
     source "custom.sh"
     mode 0644

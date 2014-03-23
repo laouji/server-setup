@@ -1,0 +1,23 @@
+syntax on
+
+hi Comment ctermfg=5 cterm=NONE
+set backspace=indent,eol,start
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set ruler
+set showcmd
+set showmatch
+set smartcase
+set wrapscan
+set autoindent
+set pastetoggle=<F4>
+set vb t_vb=
+
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set shiftround
+
+set encoding=utf-8

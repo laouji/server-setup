@@ -5,6 +5,7 @@
     "description": "basic web server",
     "run_list": [
         "yum-epel",
+        "recipe[profile]",
         "recipe[base_packages]",
         "recipe[nginx]"
     ]

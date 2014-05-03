@@ -1,0 +1,13 @@
+{
+    "name": "basic-db",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "description": "basic db server",
+    "run_list": [
+        "yum-epel",
+        "recipe[profile]",
+        "recipe[base_packages]",
+        "recipe[vim]",
+        "recipe[mysql]"
+    ]
+}

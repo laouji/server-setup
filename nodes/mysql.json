@@ -1,0 +1,7 @@
+
+{
+    "name": "basic db server",
+    "run_list": [
+        "role[basic-db]"
+    ]
+}

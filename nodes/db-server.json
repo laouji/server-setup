@@ -1,0 +1,6 @@
+{
+    "name": "basic db server",
+    "run_list": [
+        "recipe[mysql]"
+    ]
+}

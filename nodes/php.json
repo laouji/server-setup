@@ -1,0 +1,6 @@
+{
+    "name": "php",
+    "run_list": [
+        "recipe[php]"
+    ]
+}

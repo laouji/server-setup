@@ -53,3 +53,10 @@ bash "start" do
     EOH
     not_if "service php-fpm status"
 end
+
+directory "#{node[:php][:session_path]}" do
+    owner "root"
+    group "#{node[:phpfpm][:user]}"
+    mode 00775
+    action :create
+end

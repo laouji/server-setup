@@ -1,0 +1,6 @@
+{
+    "name": "www-openresty",
+    "run_list": [
+        "recipe[ngx_openresty]"
+    ]
+}

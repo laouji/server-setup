@@ -7,7 +7,13 @@ pkgs.each do |pkg|
   end
 end
 
-remote_file "#{node[:system][:local_lib]}/#{filename}.tar.gz" do
+directory "#{node[:system][:workdir]}" do
+  user   "root"
+  group  "root"
+  action :create
+end
+
+remote_file "#{node[:system][:workdir]}/#{filename}.tar.gz" do
   source "#{node[:openresty][:tarball_path]}"
   action :create_if_missing
 end
@@ -21,6 +27,17 @@ bash "make install" do
     make
     make install
   EOH
-  cwd "#{node[:system][:local_lib]}"
-  not_if { Dir.exists?("#{node[:system][:local_lib]}/#{filename}") }
+  cwd "#{node[:system][:workdir]}"
+  not_if { Dir.exists?("#{node[:system][:local_lib]}/openresty") }
+end
+
+bash "modify permissions" do
+  code <<-EOH
+    chown -R dkr:dkr #{node[:system][:local_lib]}/openresty
+  EOH
+end
+
+directory "#{node[:system][:workdir]}" do
+  recursive true
+  action    :delete
 end
